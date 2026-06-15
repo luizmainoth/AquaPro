@@ -4,9 +4,9 @@ Sistema de gestão de atletas de uma equipe de natação, com cadastro, listagem
 
 ## Integrantes da equipe
 
-- <Nome Arthur Pereira Salvador>
-- <Nome Luiz Guilherme Felix Mainoth>
-- <Nome Douglas Monfredo Machado>
+- Arthur Pereira Salvador
+- Luiz Guilherme Felix Mainoth
+- Douglas Monfredo Machado
 
 ## Tecnologias utilizadas
 
