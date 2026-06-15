@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaPro · Gestão de Atletas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-content">
+      <div class="brand">
+        <span class="brand-mark">AQ</span>
+        <div>
+          <h1>AquaPro</h1>
+          <p>Gestão de atletas da equipe de natação</p>
+        </div>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"></path>
+    </svg>
+  </header>
+
+  <main class="container">
+
+    <div id="mensagem" class="mensagem" hidden></div>
+
+    <section class="grid">
+
+      <div class="card form-card">
+        <h2 id="form-titulo">Novo atleta</h2>
+        <form id="form-atleta">
+          <input type="hidden" id="atleta-id">
+
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" required placeholder="Ex: Ana Souza">
+
+          <div class="row">
+            <div class="field">
+              <label for="idade">Idade</label>
+              <input type="number" id="idade" min="0" required placeholder="Ex: 16">
+            </div>
+            <div class="field">
+              <label for="cpf">CPF</label>
+              <input type="text" id="cpf" required placeholder="000.000.000-00">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="matricula">Matrícula</label>
+              <input type="text" id="matricula" required placeholder="Ex: 2026001">
+            </div>
+            <div class="field">
+              <label for="estilo">Estilo</label>
+              <select id="estilo" required>
+                <option value="">Selecione</option>
+                <option value="Livre">Nado Livre (Crawl)</option>
+                <option value="Costas">Costas</option>
+                <option value="Peito">Peito</option>
+                <option value="Borboleta">Borboleta</option>
+                <option value="Medley">Medley</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="mensalidade">Mensalidade (R$)</label>
+              <input type="number" id="mensalidade" step="0.01" min="0" required placeholder="Ex: 180.00">
+            </div>
+            <div class="field">
+              <label for="tempoProva">Melhor tempo (s)</label>
+              <input type="number" id="tempoProva" step="0.01" min="0" required placeholder="Ex: 28.45">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btn-salvar" class="btn btn-primary">Salvar atleta</button>
+            <button type="button" id="btn-cancelar" class="btn btn-secondary" hidden>Cancelar edição</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="list-section">
+        <div class="list-header">
+          <h2>Atletas cadastrados</h2>
+          <span id="contador" class="badge">0</span>
+        </div>
+
+        <div id="lista-atletas" class="cards-grid">
+        </div>
+
+        <p id="vazio" class="vazio" hidden>Nenhum atleta cadastrado ainda. Use o formulário ao lado para adicionar o primeiro.</p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>AquaPro — Projeto acadêmico dockerizado · Backend Spring Boot + PostgreSQL</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

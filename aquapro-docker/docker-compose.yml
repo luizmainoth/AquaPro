@@ -1,0 +1,52 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: aquapro-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: aquapro
+    ports:
+      - "5432:5432"
+    volumes:
+      - aquapro_postgres_data:/var/lib/postgresql/data
+    networks:
+      - aquapro-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d aquapro"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    container_name: aquapro-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/aquapro
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: "123456"
+    ports:
+      - "8080:8080"
+    networks:
+      - aquapro-network
+
+  frontend:
+    build: ./frontend
+    container_name: aquapro-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8081:80"
+    networks:
+      - aquapro-network
+
+networks:
+  aquapro-network:
+    driver: bridge
+
+volumes:
+  aquapro_postgres_data:
